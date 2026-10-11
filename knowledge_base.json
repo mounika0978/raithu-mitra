@@ -1,0 +1,23 @@
+[
+  {
+    "id": "demo-rainfall-checklist",
+    "title": "Rainfall decision checklist (demo guidance)",
+    "url": "",
+    "keywords": ["rain", "rainfall", "drought", "dry", "groundnut", "weather", "వర్ష", "వాన"],
+    "note": "Illustrative checklist, not a verified local crop prescription. Confirm with ANGRAU/KVK or an agricultural extension officer."
+  },
+  {
+    "id": "demo-sowing-checklist",
+    "title": "Pre-sowing checklist (demo guidance)",
+    "url": "",
+    "keywords": ["sow", "sowing", "seed", "soil", "groundnut", "plant", "విత్త"],
+    "note": "Illustrative checklist. Use current local crop calendars and official guidance before making a decision."
+  },
+  {
+    "id": "demo-scheme-verification",
+    "title": "Government scheme verification checklist",
+    "url": "",
+    "keywords": ["scheme", "insurance", "claim", "government", "పథకం", "బీమా"],
+    "note": "Always verify current eligibility, deadlines, and requirements on the relevant official portal."
+  }
+]

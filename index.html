@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#31452f">
+  <title>RaithuMitra AI — Farming Assistant</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">🌱</div>
+      <div><div class="brand-name">RaithuMitra <span>AI</span></div><div class="brand-sub">LOCAL FARMING COMPANION</div></div>
+    </div>
+    <button class="new-chat" id="newChat"><span class="big-icon">＋</span> New conversation</button>
+    <div class="side-label">QUICK ASSISTANCE</div>
+    <button class="side-action" data-prompt="What should I check when rainfall is delayed?"><span class="action-icon rain">☁</span><span><b>Rainfall advice</b><small>Understand weather risk</small></span></button>
+    <button class="side-action" data-prompt="Give me crop-stage-specific guidance for my crop."><span class="action-icon leaf">♧</span><span><b>Crop guidance</b><small>Advice for your crop stage</small></span></button>
+    <button class="side-action" data-prompt="I have a crop problem. How should I check it safely?"><span class="action-icon problem">⌕</span><span><b>Crop problems</b><small>Symptoms and next steps</small></span></button>
+    <button class="side-action" data-prompt="What should I check before sowing?"><span class="action-icon seed">✳</span><span><b>Sowing advice</b><small>Prepare before planting</small></span></button>
+    <button class="side-action" data-prompt="Where can I verify current government farming schemes?"><span class="action-icon scheme">▤</span><span><b>Government schemes</b><small>Official information</small></span></button>
+    <div class="sidebar-bottom">
+      <div class="offline-card"><span class="status-dot"></span><div><b>Prototype mode</b><small>Live weather not connected</small></div></div>
+      <div class="side-foot">Made for rain-fed farmers<br>in Andhra Pradesh</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-button menu-button" id="menuToggle" aria-label="Open menu">☰</button>
+      <div class="mobile-brand"><span>🌱</span> RaithuMitra AI</div>
+      <div class="topbar-right">
+        <label class="language-label" for="language">Language</label>
+        <select id="language" aria-label="Choose language"><option value="en">English</option><option value="te">తెలుగు</option></select>
+        <span class="demo-pill"><span class="status-dot"></span> Demo assistant</span>
+      </div>
+    </header>
+
+    <div class="workspace">
+      <section class="chat-column">
+        <div class="welcome" id="welcome">
+          <div class="sun-mark">☀</div>
+          <div class="eyebrow">YOUR LOCAL FARMING COMPANION</div>
+          <h1>Good morning, <em>farmer.</em></h1>
+          <p class="welcome-telugu">నమస్కారం! మీ వ్యవసాయ నిర్ణయాలకు నేను సహాయం చేస్తాను.</p>
+          <p class="welcome-copy">Ask about rainfall, crop growth, sowing, or farming support. Let’s make the next decision clearer, together.</p>
+          <div class="suggestion-grid">
+            <button class="suggestion" data-prompt="What should I consider if rain is delayed for my groundnut crop?"><span class="suggestion-icon">☁️</span><span><b>Rainfall & dry spells</b><small>What if the rain is delayed?</small></span><span class="arrow">↗</span></button>
+            <button class="suggestion" data-prompt="Give me crop-stage-specific guidance for groundnut."><span class="suggestion-icon">🌿</span><span><b>Crop guidance</b><small>Advice for my crop stage</small></span><span class="arrow">↗</span></button>
+            <button class="suggestion" data-prompt="What should I check before sowing groundnut?"><span class="suggestion-icon">🌾</span><span><b>Before sowing</b><small>Check the important factors</small></span><span class="arrow">↗</span></button>
+            <button class="suggestion" data-prompt="How can I verify a farming government scheme?"><span class="suggestion-icon">📋</span><span><b>Farming support</b><small>Find official scheme details</small></span><span class="arrow">↗</span></button>
+          </div>
+        </div>
+        <div class="messages" id="messages" aria-live="polite"></div>
+        <div class="composer-wrap">
+          <div class="upload-preview" id="uploadPreview" hidden></div>
+          <form class="composer" id="chatForm">
+            <label class="attach-button" for="cropPhoto" title="Upload crop photo" aria-label="Upload crop photo">＋</label>
+            <input type="file" id="cropPhoto" accept="image/*" hidden>
+            <textarea id="messageInput" rows="1" placeholder="Ask RaithuMitra anything about your farm…" aria-label="Message RaithuMitra"></textarea>
+            <button class="voice-button" type="button" id="voiceButton" title="Voice input" aria-label="Voice input">🎙</button>
+            <button class="send-button" type="submit" id="sendButton" aria-label="Send message">↑</button>
+          </form>
+          <div class="composer-note">RaithuMitra can make mistakes. Verify important decisions with an agricultural expert.</div>
+        </div>
+      </section>
+
+      <aside class="profile-panel">
+        <div class="panel-heading"><div><span class="panel-kicker">PERSONALISE YOUR ADVICE</span><h2>Your farm profile</h2></div><span class="profile-leaf">♧</span></div>
+        <p class="panel-intro">A few details help the assistant tailor its responses.</p>
+        <form id="profileForm" class="profile-form">
+          <label>Village <input id="village" placeholder="e.g. Kalyandurg"></label>
+          <div class="two-fields">
+            <label>Mandal <input id="mandal" placeholder="Mandal"></label>
+            <label>District <input id="district" value="Anantapur" placeholder="District"></label>
+          </div>
+          <label>Primary crop
+            <select id="crop"><option>Groundnut</option><option>Red gram</option><option>Bengal gram</option><option>Green gram</option><option>Black gram</option><option>Millets</option><option>Other</option></select>
+          </label>
+          <label>Sowing date <input id="sowingDate" type="date"></label>
+          <label>Growth stage
+            <select id="growthStage"><option value="">Not sure yet</option><option>Before sowing</option><option>Germination</option><option>Vegetative growth</option><option>Flowering</option><option>Pod / grain formation</option><option>Maturity</option></select>
+          </label>
+          <label>Soil type
+            <select id="soilType"><option value="">Not known</option><option>Red soil</option><option>Black soil</option><option>Sandy soil</option><option>Loamy soil</option><option>Other</option></select>
+          </label>
+          <label>Water availability
+            <select id="waterAvailability"><option>Rain-fed only</option><option>Limited irrigation</option><option>Reliable irrigation</option><option>Not sure</option></select>
+          </label>
+          <button class="save-profile" type="submit">Save farm profile <span>✓</span></button>
+          <div class="save-status" id="saveStatus" aria-live="polite">Details stay in this page session.</div>
+        </form>
+        <div class="source-card"><div class="source-card-icon">✦</div><div><b>Grounded in trusted guidance</b><p>Demo answers use cautious rules. Live official sources are not connected yet.</p></div></div>
+      </aside>
+    </div>
+    <footer class="footer"><span>🌱 Built for Andhra Pradesh rain-fed farming</span><span>Demo only · Not a replacement for local agricultural advice</span></footer>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="/static/app.js"></script>
+</body>
+</html>
